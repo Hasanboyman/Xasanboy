@@ -188,9 +188,4 @@ export default {
 };
 </script>
 
-<style>
-.active-link {
-  font-weight: bold;
-  color: blue;
-}
-</style>
+
