@@ -20,7 +20,7 @@ const handleSubmit = async () => {
       comment: withdrawData.value.comment
     });
     alert('Money withdrawn successfully');
-    router.push('/kassa'); // Navigate to another page after successful withdrawal
+    await router.push('/kassa'); // Navigate to another page after successful withdrawal
   } catch (error) {
     console.error('Failed to withdraw money:', error);
     alert('Failed to withdraw money. Please try again later.');
@@ -31,7 +31,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div style="box-shadow: 1px 0px 8px black;" class="bg-white py-6">
+  <div style="box-shadow: 1px 0 8px black;" class="bg-white py-6">
     <span  class="py-12 px-48 font-bold text-2xl">Cash Withdrawal</span>
   </div>
 
@@ -59,8 +59,4 @@ const handleSubmit = async () => {
 </template>
 
 <style>
-.active-link {
-  font-weight: bold;
-  color: blue;
-}
 </style>

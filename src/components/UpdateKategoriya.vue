@@ -70,15 +70,6 @@ onMounted(fetchCategories);
         <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
       </select>
 
-      <label for="permissions" class="block text-base mb-2 mt-8">Permissions</label>
-      <select v-model="serviceData.permissions" multiple
-        class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-        <option value="1">Kassadan pul olish</option>
-        <option value="2">Inkassa qilish</option>
-        <option value="3">Kassani ko'rish</option>
-        <option value="4">Buyurtmalarni ko'rish</option>
-      </select>
-
       <div class="mt-16 flex justify-end items-center">
         <button type="submit"
           class="bg-gray-900 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-sky-400 hover:shadow-md transition-all ease-in-out duration-300">

@@ -8,14 +8,12 @@ import { useAbility } from '@casl/vue';
 const users = ref([]);
 const ability = useAbility();
 
-// Pagination variables
 const currentPage = ref(1);
 const rowsPerPage = 8;
 
-// API call to fetch users
 const fetchUsers = async () => {
   try {
-    const response = await apiService.getAllUsers(); // Call to fetch users
+    const response = await apiService.getAllUsers();
     users.value = response.data;
     console.log("Users fetched successfully");
   } catch (error) {
@@ -34,7 +32,6 @@ const deleteUser = async (userId) => {
   }
 };
 
-// Computed property for total pages
 const totalPages = computed(() => Math.ceil(users.value.length / rowsPerPage));
 
 // Computed property for paginated users
@@ -43,7 +40,6 @@ const paginatedUsers = computed(() => {
   return users.value.slice(startIndex, startIndex + rowsPerPage);
 });
 
-// Pagination methods
 const goToPage = (page) => {
   currentPage.value = page;
 };
@@ -60,7 +56,6 @@ const nextPage = () => {
   }
 };
 
-// Fetch users on component mount
 onMounted(fetchUsers);
 </script>
 
@@ -98,12 +93,12 @@ onMounted(fetchUsers);
           <tbody>
             <tr v-for="user in paginatedUsers" :key="user.id" class="border-b text-gray-950 bg-white">
               <th class="px-4 py-3">{{ user.id }}</th>
-              <th class="px-4 py-3 text-blue-500">{{ user.full_name }}</th>
+              <th class="px-4 py-3 text-blue-500">{{ user.first_name }}</th>
               <th class="px-4 py-3 text-red-500">{{ user.age }}</th>
               <th class="px-4 py-3 text-red-500">{{ user.address }}</th>
               <th class="px-4 py-3 text-red-500">{{ user.phone_number }}</th>
               <th class="px-4 py-3">
-                <div class="bg-blue-300 border-none rounded-lg py-1">{{ user.role.name }}</div>
+                <div class="bg-blue-300 border-none rounded-lg py-1">{{ user.role }}</div>
               </th>
               <th class="px-4 py-3">
                 <RouterLink :to="'/update-user/' + user.id" class="text-blue-500 pr-2"  v-if="ability.can('use', 'view')">View Edit</RouterLink>
