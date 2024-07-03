@@ -18,10 +18,10 @@ export default {
     return apiClient.post('api/create-user/', userData);
   },
   allOrders() {
-    return apiClient.get('https://api-pharm.onrender.com/orders/');
+    return apiClient.get('orders/');
   },
   createOrder(orderData) {
-    return apiClient.post('https://api-pharm.onrender.com/orders/create/', orderData);
+    return apiClient.post('orders/create/', orderData);
   },
   deleteOrder(orderId) {
     return apiClient.delete(`api/orders/${orderId}/`);
@@ -41,7 +41,6 @@ export default {
   updateDoctor(doctorId, updatedData) {
     return apiClient.put(`api/doctors/update/${doctorId}/`, updatedData);
   },
-  
   deleteDoctor(doctorId) {
     return apiClient.delete(`api/doctors/delete/${doctorId}`);
   },
@@ -58,7 +57,7 @@ export default {
     return apiClient.delete(`api/services/delete/${serviceId}`);
   },
   showCashBox() {
-    return apiClient.get('https://api-pharm.onrender.com/api/cashbox/all');
+    return apiClient.get('api/cashbox/all');
   },
   getTotal() {
     return apiClient.get('api/cashbox/total/');
@@ -76,7 +75,7 @@ export default {
     return apiClient.put(`api/users/delete/${userId}`);
   },
   createUsers(userData) {
-    return apiClient.post(`https://api-pharm.onrender.com/api/create-user`,userData);
+    return apiClient.post('api/create-user', userData);
   },
   updateUser(userId, updatedData) {
     return apiClient.post(`api/users/update/${userId}`, updatedData);
@@ -100,7 +99,7 @@ export default {
     return apiClient.post('api/categories/create/', categoryData);
   },
   updateCategory(categoryId, updatedData) {
-    return apiClient.post(`https://api-pharm.onrender.com/api/categories/update/${categoryId}`, updatedData);
+    return apiClient.post(`api/categories/update/${categoryId}`, updatedData);
   },
   deleteCategory(categoryId) {
     return apiClient.put(`api/categories/delete/${categoryId}`);
