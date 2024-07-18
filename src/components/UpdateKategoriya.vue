@@ -7,7 +7,6 @@ import apiService from './services/apiService';
 const serviceData = ref({
   name: '',
   price: '',
-  permissions: [],
   typeOf: ''
 });
 
@@ -28,7 +27,6 @@ const fetchCategories = async () => {
 const createService = async () => {
   try {
     await apiService.createService(serviceData.value);
-    alert('Service created successfully');
     router.push('/xizmatlar');
   } catch (error) {
     console.error('Error creating service:', error);
@@ -47,33 +45,33 @@ onMounted(fetchCategories);
 
 <template>
   <div class="bg-white py-6 shadow-md">
-    <span class="py-12 px-48 font-bold text-2xl">Update Service</span>
+    <span class="py-12 px-48 font-bold text-2xl">Servis Qo'shish</span>
   </div>
 
   <section id="log-in" class="flex justify-center min-h-52 py-20">
     <form @submit.prevent="createService" method="post"
       class="bg-white shadow-md border-black rounded overflow-hidden items-center w-1/4 p-8">
-      <label for="name" class="block text-base mb-2">Service Name</label>
+      <label for="name" class="block text-base mb-2">Servis Nomi</label>
       <input v-model="serviceData.name" type="text" id="name"
         class="border w-full text-base px-2 py-1 rounded shadow focus:outline-none focus:ring-0 focus:border-blue-300"
-        placeholder="Service Name">
+        placeholder="Servis Nomi">
 
-      <label for="price" class="block text-base mb-2 mt-8">Price</label>
-      <input v-model="serviceData.price" type="number" id="price"
+      <label for="price" class="block text-base mb-2 mt-8">Narxi</label>
+      <input v-model="serviceData.price_of_service" type="number" id="price"
         class="border w-full text-base px-2 py-1 rounded shadow focus:outline-none focus:ring-0 focus:border-blue-300"
-        placeholder="Service Price">
+        placeholder="Servis Narxi">
 
-      <label for="typeOf" class="block text-base mb-2 mt-8">Type Of</label>
+      <label for="typeOf" class="block text-base mb-2 mt-8">Katigoriya</label>
       <select v-model.number="serviceData.typeOf" id="typeOf"
         class="border w-full text-base px-2 py-1 rounded shadow focus:outline-none focus:ring-0 focus:border-blue-300">
-        <option value="">Select Type</option>
+        <option value="">Turini tanlang</option>
         <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
       </select>
 
       <div class="mt-16 flex justify-end items-center">
         <button type="submit"
           class="bg-gray-900 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-sky-400 hover:shadow-md transition-all ease-in-out duration-300">
-          Create
+          Yaratish
         </button>
       </div>
     </form>

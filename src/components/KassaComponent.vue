@@ -13,7 +13,6 @@ const rowsPerPage = 8;
 
 const ability = useAbility();
 
-// Fetch data from the API
 const fetchData = async () => {
   try {
     console.log('Fetching data...');

@@ -11,28 +11,26 @@ const withdrawData = ref({
 const router = useRouter();
 
 const handleSubmit = async () => {
+  if (!withdrawData.value.comment) {
+    alert('Please write a note');
+    return;
+  }
+
   try {
-    if (withdrawData.value.comment === null){
-      alert('please write the note')
-    }
-   await apiService.withdrawMoney({
+    await apiService.withdrawMoney({
       amount: parseFloat(withdrawData.value.amount),
       comment: withdrawData.value.comment
     });
-    alert('Money withdrawn successfully');
     await router.push('/kassa'); // Navigate to another page after successful withdrawal
   } catch (error) {
     console.error('Failed to withdraw money:', error);
-    alert('Failed to withdraw money. Please try again later.');
   }
 };
-
-
 </script>
 
 <template>
   <div style="box-shadow: 1px 0 8px black;" class="bg-white py-6">
-    <span  class="py-12 px-48 font-bold text-2xl">Cash Withdrawal</span>
+    <span class="py-12 px-48 font-bold text-2xl">Cash Withdrawal</span>
   </div>
 
   <section id="log-in" class="flex justify-center min-h-52 py-36">
@@ -57,6 +55,3 @@ const handleSubmit = async () => {
     </form>
   </section>
 </template>
-
-<style>
-</style>

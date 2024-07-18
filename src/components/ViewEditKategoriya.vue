@@ -29,7 +29,6 @@ const toggleEdit = (id) => {
 const handleUpdate = async (service) => {
   try {
     await apiService.updateService(service.id, service);
-    alert('Service updated successfully');
     toggleEdit(service.id);
   } catch (error) {
     console.error('Failed to update service:', error);

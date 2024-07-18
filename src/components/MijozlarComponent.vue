@@ -11,7 +11,7 @@ const doctors = ref([]);
 const services = ref([]);
 const showModal = ref(false);
 const selectedOrder = ref({
-  id: null,
+  id: "",
   price: null,
   customer: { id: null },
   doctor: { id: null },
@@ -28,7 +28,7 @@ const ability = useAbility();
 const fetchOrders = async () => {
   try {
     const response = await apiService.allOrders();
-    orders.value = response.data.orders.map(order => ({
+    orders.value = response.data.map(order => ({
       ...order,
       customer: customers.value.find(c => c.id === order.customer),
       doctor: doctors.value.find(d => d.id === order.doctor),
@@ -105,7 +105,6 @@ const updateOrder = async () => {
       doctor: selectedOrder.value.doctor.id,
       service: selectedOrder.value.service.id
     });
-    alert('Order updated successfully');
     fetchOrders();
     showModal.value = false;
   } catch (error) {
@@ -131,15 +130,14 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
   <section class="flex justify-start">
     <div class="flex justify-start items-center">
       <div class="flex justify-start relative left-64">
         <div class="right-btn pt-4 flex items-start justify-start px-32 gap-4">
           <RouterLink to="/create_kategoriya" v-if="ability.can('view', 'Add')"
-            class="bg-blue-500 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-violet-600 hover:shadow-md transition-all ease-in-out duration-300">
-            Add Orders
+                      class="bg-blue-500 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-violet-600 hover:shadow-md transition-all ease-in-out duration-300">
+            Buyurtma Qo'shish
           </RouterLink>
         </div>
       </div>
@@ -151,28 +149,28 @@ onMounted(() => {
       <div class="pt-8 flex justify-center">
         <table class="bg-white text-nowrap shadow-md rounded-lg overflow-hidden w-full max-w-51xl">
           <thead>
-            <tr class="bg-gray-50">
-              <th class="px-4 py-3 font-bold">ID</th>
-              <th class="px-4 py-3 font-bold">Narxi</th>
-              <th class="px-4 py-3 font-bold">Customer</th>
-              <th class="px-4 py-3 font-bold">Doctor</th>
-              <th class="px-4 py-3 font-bold">Service</th>
-              <th class="px-4 py-3 font-bold" v-if="ability.can('view','Actions')">Actions</th>
-            </tr>
+          <tr class="bg-gray-50">
+            <th class="px-4 py-3 font-bold">ID</th>
+            <th class="px-4 py-3 font-bold">Narxi</th>
+            <th class="px-4 py-3 font-bold">Customer</th>
+            <th class="px-4 py-3 font-bold">Doctor</th>
+            <th class="px-4 py-3 font-bold">Service</th>
+            <th class="px-4 py-3 font-bold" v-if="ability.can('view','Actions')">Actions</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="order in paginatedOrders" :key="order.id" class="border-b text-gray-700">
-              <th class="px-4 py-3">{{ order.id }}</th>
-              <th class="px-4 py-3">{{ order.price }}</th>
-              <th class="px-4 py-3">{{ order.customer.full_name }}</th>
-              <th class="px-4 py-3">{{ order.doctor.full_name }}</th>
-              <th class="px-4 py-3">{{ order.service.name }}</th>
-              <th class="px-4 py-3">
-                <button @click="selectOrder(order)" class="text-blue-500 pr-4" v-if="ability.can('use', 'Edit')">Edit</button>
-                <RouterLink to="/mijozlarni_korish" class="text-blue-500 pr-4" v-if="ability.can('view', 'view')">View</RouterLink>
-                <button @click="deleteOrder(order.id)" class="text-red-600" v-if="ability.can('use', 'Delete')">Delete</button>
-              </th>
-            </tr>
+          <tr v-for="order in paginatedOrders" :key="order.id" class="border-b text-gray-700">
+            <th class="px-4 py-3">{{ order.id }}</th>
+            <th class="px-4 py-3">{{ order.price }}</th>
+            <th class="px-4 py-3">{{ order.customer.full_name }}</th>
+            <th class="px-4 py-3">{{ order.doctor.full_name }}</th>
+            <th class="px-4 py-3">{{ order.service.name }}</th>
+            <th class="px-4 py-3">
+              <button @click="selectOrder(order)" class="text-blue-500 pr-4" v-if="ability.can('use', 'Edit')">Edit</button>
+              <RouterLink to="/mijozlarni_korish" class="text-blue-500 pr-4" v-if="ability.can('view', 'view')">View</RouterLink>
+              <button @click="deleteOrder(order.id)" class="text-red-600" v-if="ability.can('use', 'Delete')">Delete</button>
+            </th>
+          </tr>
           </tbody>
         </table>
       </div>

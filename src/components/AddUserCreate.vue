@@ -20,7 +20,6 @@ const router = useRouter();
 const createDoctor = async () => {
   try {
     await apiService.createDoctor(doctor.value);
-    alert('Doctor created successfully');
     router.push('/Shifokor'); // Navigate back to the doctors list
   } catch (error) {
     console.error('Error creating doctor:', error);

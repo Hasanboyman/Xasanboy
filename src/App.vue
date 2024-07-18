@@ -1,42 +1,48 @@
 <template>
-  
-    <section v-if="$route.name !='login'" class="bg-white shadow w-full h-auto flex justify-around">
-      <nav class="flex justify-between items-center w-full max-w-screen-xl">
-        <span>
-          <img src="./components/img/logo2-removebg-preview.png" class="w-48" alt="logo1">
+    <section v-if="$route.name !== 'ErrorComponents' && $route.name !== 'login'" class="bg-white shadow-md w-full h-auto flex justify-center py-4">
+      <nav class="flex justify-between items-center w-full max-w-screen-xl px-8">
+        <span class="logo transform transition-transform duration-500">
+          <img src="./components/img/logo2-removebg-preview.png" class="w-48" alt="logo">
         </span>
-        <ul class="flex gap-16 items-center font-bold">
-          <li class="px-4 py-2">
-            <RouterLink to="/kassa">Kassa</RouterLink>
+        <ul class="flex gap-8 items-center font-bold text-lg">
+          <li
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/kassa" class="nav-link">Kassa</RouterLink>
           </li>
-          <li>
-            <RouterLink to="/mijozlar">Mijozlar</RouterLink>
+          <li
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/mijozlar" class="nav-link">Mijozlar</RouterLink>
           </li>
-          <li>
-            <RouterLink to="/Xodimlar">Xodimlar</RouterLink>
+          <li
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/Xodimlar" class="nav-link">Xodimlar</RouterLink>
           </li>
-          <li>
-            <RouterLink to="/kategoriya">Kategoryalar</RouterLink>
+          <li
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/kategoriya" class="nav-link">Kategoryalar</RouterLink>
           </li>
-          <li>
-            <RouterLink to="/xizmatlar">Xizmatlar</RouterLink>
+          <li
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/xizmatlar" class="nav-link">Xizmatlar</RouterLink>
           </li>
-          <li>
-            <RouterLink to="/Shifokor">Shifokorlar</RouterLink>
+          <li
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/Shifokor" class="nav-link">Shifokorlar</RouterLink>
           </li>
-          <li>
-            <RouterLink to="/roliComponent" v-if="ability.can('view', 'RoliComponent')">Roli</RouterLink>
+          <li v-if="ability.can('view', 'RoliComponent')"
+            class="nav-item px-4 py-2 transition-all ease-in-out duration-300 hover:text-primary1 rounded-md">
+            <RouterLink to="/roliComponent" class="nav-link">Roli</RouterLink>
           </li>
         </ul>
-        <div class="right-btn flex items-center gap-4">
-          <RouterLink to="/" class="bg-blue-600 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-sky-400 hover:shadow-md transition-all ease-in-out duration-300">
+        <div class="right-btn flex items-center px-4">
+          <RouterLink to="/"
+            class="exit-btn bg-blue-600 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-4 py-2 shadow-inner hover:bg-blue-700 hover:shadow-lg transition-all ease-in-out duration-300">
             Chiqish
           </RouterLink>
         </div>
       </nav>
     </section>
-    <router-view />
-
+  <router-view />
 </template>
 
 <script setup>
@@ -47,31 +53,15 @@ const ability = useAbility();
 
 onMounted(() => {
   let docTitle = document.title;
-  const defaultFavicon = '../../../../Images/download (1).jpg'; // Update with your default favicon path
-  const attentionFavicon = '../../../../Images/download.jpg'; // Update with your attention favicon path
 
-  const changeFavicon = (src) => {
-    let link = document.querySelector("link[rel~='../../../../Images/download (1).jpg']");
-    if (!link) {
-      link = document.createElement('link');
-      link.rel = 'icon';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    }
-    link.href = src;
-  };
-
-  window.addEventListener("blur", () => { 
-    document.title = 'Qaytib kirma 😒'; 
-    changeFavicon(attentionFavicon);
+  window.addEventListener("blur", () => {
+    document.title = 'GOOD BYE';
   });
 
-  window.addEventListener("focus", () => { 
-    document.title = docTitle; 
-    changeFavicon(defaultFavicon);
+  window.addEventListener("focus", () => {
+    document.title = docTitle;
   });
 });
 </script>
 
-<style>
-/* Add your styles here */
-</style>
+

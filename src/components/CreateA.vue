@@ -38,15 +38,11 @@ const createUser = async () => {
       ...userData.value,
       role_id: selectedRole.id // Send role ID to the backend
     });
-    alert('User created successfully');
     router.push('/Xodimlar');
   } catch (error) {
     console.error('Error creating user:', error);
     if (error.response) {
       errors.value = error.response.data;
-      alert('Failed to create user: ' + JSON.stringify(error.response.data));
-    } else {
-      alert('Failed to create user. Please try again later.');
     }
   }
 };

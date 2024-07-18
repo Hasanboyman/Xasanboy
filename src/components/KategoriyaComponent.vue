@@ -90,7 +90,7 @@ onMounted(fetchCategories);
         <div class="right-btn pt-4 flex items-start justify-start px-32 gap-4">
       <RouterLink to="/create_kategoriya1" v-if="ability.can('use','Add Category')"
         class="mt-1 bg-blue-600 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-sky-400 hover:shadow-md transition-all ease-in-out duration-300">
-        Add Category
+        Katigoriya qo'shish
       </RouterLink>
     </div>
   </div>
@@ -102,8 +102,8 @@ onMounted(fetchCategories);
           <thead class="bg-white text-black border-b-2 border-black">
             <tr>
               <th class="px-4 py-3">ID</th>
-              <th class="px-4 py-3">Name</th>
-              <th class="px-4 py-3" v-if="ability.can('view','Actions')">Action</th>
+              <th class="px-4 py-3">Ismi</th>
+              <th class="px-4 py-3" v-if="ability.can('view','Actions')">Actions</th>
             </tr>
           </thead>
           <tbody>

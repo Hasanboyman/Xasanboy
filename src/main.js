@@ -24,8 +24,8 @@ import view_edite_katgoriya from './components/ViewEditKategoriya.vue';
 import xizmatlar from './components/XizmatlarComponent.vue';
 import AddOrder from './components/AddOrder.vue';
 import create_1 from './components/create_1.vue';
-import update_user from './components/UpdateUser.vue'
-
+import update_user from './components/UpdateUser.vue';
+import ErrorComponents from './ErrorComponent.vue'
 
 const routes = [
   { path: '/', component: login, name: 'login' },
@@ -49,17 +49,19 @@ const routes = [
   { path: '/AddOrder', component: AddOrder, meta: { requiresAuth: true, role: 'admin' } },
   { path: '/create_1', component: create_1, meta: { requiresAuth: true, role: 'admin' } },
   { path: '/update_user/:id', component: update_user, meta: { requiresAuth: true, role: 'admin' } },
+  { path: '/error', component: ErrorComponents, name: 'ErrorComponents'},
+  { path: '/:pathMatch(.*)*', component: ErrorComponents, name:'ErrorComponents' }
+
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
   linkActiveClass: 'border-b border-blue-500 ',
-  linkExactActiveClass: '',
 });
 
-const isAuthenticated = () => true; // Replace with actual authentication check
-const getUserRole = () => 'admin'; // Replace with actual role fetching logic
+const isAuthenticated = () => true;
+const getUserRole = () => 'superAdmin' || 'guest';
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -69,7 +71,7 @@ router.beforeEach((to, from, next) => {
       const userRole = getUserRole();
       const ability = defineAbilitiesFor(userRole);
       if (to.meta.role && !ability.can('access', to.meta.role) && userRole !== 'superAdmin' && userRole !== 'admin' && userRole !== 'kassa') {
-        next({ path: '/' });
+        next({ path: '/ErrorComponents', props: { errorMessage: 'Sizda bu sahifaga kirish uchun ruxsat yo‘q!' } });
       } else {
         next();
       }
@@ -80,6 +82,9 @@ router.beforeEach((to, from, next) => {
 });
 
 const app = createApp(App);
+
 app.use(router);
 app.use(abilitiesPlugin, defineAbilitiesFor(getUserRole()));
+
 app.mount('#app');
+  

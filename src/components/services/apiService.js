@@ -39,7 +39,7 @@ export default {
     return apiClient.post('api/doctors/create', doctorData);
   },
   updateDoctor(doctorId, updatedData) {
-    return apiClient.put(`api/doctors/update/${doctorId}/`, updatedData);
+    return apiClient.put(`api/doctors/update/${doctorId}`, updatedData);
   },
   deleteDoctor(doctorId) {
     return apiClient.delete(`api/doctors/delete/${doctorId}`);
@@ -72,13 +72,13 @@ export default {
     return apiClient.get('api/users/all');
   },
   deleteUser(userId) {
-    return apiClient.put(`api/users/delete/${userId}`);
+    return apiClient.delete(`api/users/delete/${userId}`);
   },
   createUsers(userData) {
     return apiClient.post('api/create-user', userData);
   },
   updateUser(userId, updatedData) {
-    return apiClient.post(`api/users/update/${userId}`, updatedData);
+    return apiClient.put(`api/users/update/${userId}`, updatedData);
   },
   getAllCustomers() {
     return apiClient.get('api/customers/list');
@@ -87,7 +87,7 @@ export default {
     return apiClient.post('api/customers/create', customerData);
   },
   updateCustomer(customerId, updatedData) {
-    return apiClient.put(`api/customers/update/${customerId}/`, updatedData);
+    return apiClient.put(`api/customers/update/${customerId}`, updatedData);
   },
   deleteCustomer(customerId) {
     return apiClient.delete(`api/customers/delete/${customerId}`);
@@ -106,5 +106,11 @@ export default {
   },
   listPermissions() {
     return apiClient.get('permissions/');
+  },
+  getAllRoles() {
+    return apiClient.get('api/roles/all');
+  },
+  updateRole(roleId, updatedData) {
+    return apiClient.put(`api/roles/update/${roleId}`, updatedData);
   }
 };

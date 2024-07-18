@@ -60,14 +60,12 @@ function saveChanges(index) {
   console.log(`Saving changes for user with ID ${users.value[index].id}`);
   console.log(`New Name: ${users.value[index].name}`);
   console.log(`New Role: ${users.value[index].role}`);
-  alert(`User ${users.value[index].id} // ${users.value[index].name} //  ${users.value[index].role}  // saved!`);
 }
 
 // Function to cancel editing
 function cancelEdit(index) {
   // For simplicity, we are not reverting changes here
   console.log(`Cancelled editing for user at index ${index}`);
-  alert(`Editing for user ${users.value[index].id} cancelled!`);
 }
 </script>
 

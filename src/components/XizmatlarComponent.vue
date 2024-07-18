@@ -90,7 +90,7 @@ onMounted(fetchServices);
     <div class="right-btn pt-4 flex items-start justify-start px-32 gap-4">
       <RouterLink to="/updatecategoriya" v-if="ability.can('use','Add service')"
         class="mt-1 bg-blue-600 border-yellow-50 border-x-2 border-y-2 rounded-full text-white font-bold px-3 py-2 shadow-inner hover:border-sky-400 hover:shadow-md transition-all ease-in-out duration-300">
-        Add Service
+        Servis qo'shish
       </RouterLink>
     </div>
   </div>
@@ -102,8 +102,8 @@ onMounted(fetchServices);
           <thead class="bg-white text-black border-b-2 border-black">
             <tr>
               <th class="px-4 py-3">ID</th>
-              <th class="px-4 py-3">NAME</th>
-              <th class="px-4 py-3">PRICE</th>
+              <th class="px-4 py-3">NOMI</th>
+              <th class="px-4 py-3">NARXI</th>
               <th class="px-4 py-3" v-if="ability.can('view','Actions')">Actions</th>
             </tr>
           </thead>
@@ -113,8 +113,8 @@ onMounted(fetchServices);
               <th class="px-4 py-3">{{ service.name }}</th>
               <th class="px-4 py-3">{{ service.price_of_service }}</th>
               <th class="px-4 py-3">
-                <span @click="selectService(service)" class="text-blue-500 cursor-pointer pr-2" v-if="ability.can('use','Edit')">Edit</span>
-                <span @click="deleteService(service.id)" class="text-red-600 cursor-pointer" v-if="ability.can('use','Delete')">Delete</span>
+                <span @click="selectService(service)" class="text-blue-500 cursor-pointer pr-2" v-if="ability.can('use','Edit')">Tahrirlash</span>
+                <span @click="deleteService(service.id)" class="text-red-600 cursor-pointer" v-if="ability.can('use','Delete')">O'chirish</span>
               </th>
             </tr>
           </tbody>

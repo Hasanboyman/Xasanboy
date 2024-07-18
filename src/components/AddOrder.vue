@@ -38,11 +38,9 @@ const handleSubmit = async () => {
       discount: formData.value.discount
     };
     await apiService.createOrder('orders/create/', orderData);
-    alert('Order created successfully');
     isFormVisible.value = true;
   } catch (error) {
     console.error('Error creating order:', error);
-    alert('Error creating order:', error);
   }
 };
 </script>
